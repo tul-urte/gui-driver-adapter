@@ -76,7 +76,7 @@ public class GuiObjectVisitor implements ItemVisitor< GuiObject< ? > >
 
         if ( document == node )
         {
-            element.setAttribute( "xmlns:" + Backend.XML_NAMESPACE_TAG, Backend.XML_NAMESPACE );
+            element.setAttribute( "xmlns:" + Backend.XML_NAMESPACE_TAG, Backend.XML_NAMESPACE_URI );
 
             document.normalizeDocument();
         }

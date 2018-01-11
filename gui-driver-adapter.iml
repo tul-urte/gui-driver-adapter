@@ -22,6 +22,10 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="gui-driver-utils" />
+    <orderEntry type="module" module-name="el-template-manager" />
+    <orderEntry type="library" name="Maven: de.odysseus.juel:juel-impl:2.2.7" level="project" />
+    <orderEntry type="library" name="Maven: de.odysseus.juel:juel-api:2.2.7" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="module" module-name="gui-driver-harness" />
     <orderEntry type="module" module-name="gui-driver" />
     <orderEntry type="library" name="Maven: net.sf.jtidy:jtidy:r938" level="project" />

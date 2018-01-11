@@ -182,7 +182,7 @@ public abstract class AbstractGuiObjectConsultant< T > implements GuiObjectConsu
 
             maybeSetElementAttribute(
                     element,
-                    Backend.XML_NAMESPACE,
+                    Backend.XML_NAMESPACE_URI,
                     "a:xywh",
                     format( "%s,%s,%s,%s", ol[ 0 ], ol[ 1 ], ol[ 2 ], ol[ 3 ] )
             );

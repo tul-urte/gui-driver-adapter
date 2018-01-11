@@ -1,6 +1,6 @@
 package com.brentcroft.gtd.adapter.utils;
 
-import com.brentcroft.gtd.utilities.Waiter8;
+import com.brentcroft.util.Waiter8;
 import javax.swing.SwingUtilities;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -41,8 +41,8 @@ public class SwingUtils
             } );
 
             new Waiter8()
-                    .withUntil( () -> completed[ 0 ] )
-                    .withTimeout( millis ->
+                    .until( () -> completed[ 0 ] )
+                    .onTimeout( millis ->
                     {
                         throw new Waiter8.TimeoutException( format( "Gave up waiting after [%s] millis.", millis ) );
                     } )

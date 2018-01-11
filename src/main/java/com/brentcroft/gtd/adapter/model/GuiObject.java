@@ -31,7 +31,7 @@ public interface GuiObject< T > extends Gob
      * Attributes
      */
     String XML_NAMESPACE_TAG = Backend.XML_NAMESPACE_TAG;
-    String XML_NAMESPACE = Backend.XML_NAMESPACE;
+    String XML_NAMESPACE = Backend.XML_NAMESPACE_URI;
 
 
     T getObject();
