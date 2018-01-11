@@ -28,7 +28,9 @@ public abstract class DefaultGuiObject< T extends Object > extends AbstractGuiOb
 
     protected void addRobotAction( Element element, Map< String, Object > options )
     {
-        setAction( element, options, ATTRIBUTE_VALUE_ROBOT );
+        // TODO: remove the concept of a RobotAction
+        // its implicit on every GuiObject
+        //setAction( element, options, ATTRIBUTE_VALUE_ROBOT );
     }
 
     protected void addClickAction( Element element, Map< String, Object > options )
