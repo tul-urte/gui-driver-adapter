@@ -30,7 +30,6 @@ public class GuiObjectVisitor implements ItemVisitor< GuiObject< ? > >
     boolean registerDuplicates = true;
 
 
-
     protected final Map< Integer, Element > componentIds = new HashMap<>();
 
     private final Stack< Node > stack = new Stack<>();
@@ -74,12 +73,7 @@ public class GuiObjectVisitor implements ItemVisitor< GuiObject< ? > >
 
         Element element = document.createElement( tag );
 
-        if ( document == node )
-        {
-            element.setAttribute( "xmlns:" + Backend.XML_NAMESPACE_TAG, Backend.XML_NAMESPACE_URI );
 
-            document.normalizeDocument();
-        }
 
         return element;
     }
@@ -105,13 +99,22 @@ public class GuiObjectVisitor implements ItemVisitor< GuiObject< ? > >
         {
             itemState = ItemState.DUPLICATE;
 
-            if ( !registerDuplicates)
+            if ( ! registerDuplicates )
             {
                 return ItemState.DUPLICATE;
             }
         }
 
         parent.appendChild( element );
+
+        // TODO: is this the correct place??
+        if ( parent.getNodeType() == Node.DOCUMENT_NODE )
+        {
+            XmlUtils.addXmlnsPrefixNamespaceDeclaration( element, Backend.XML_NAMESPACE_TAG, Backend.XML_NAMESPACE_URI );
+
+            XmlUtils.getDocument( element ).normalizeDocument();
+        }
+
 
         //
         try
