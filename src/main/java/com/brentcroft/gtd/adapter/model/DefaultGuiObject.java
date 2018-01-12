@@ -1,12 +1,12 @@
 package com.brentcroft.gtd.adapter.model;
 
-import com.brentcroft.gtd.adapter.utils.SwingUtils;
 import com.brentcroft.gtd.camera.GuiCameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.HashMap;
 import java.util.Map;
 import org.w3c.dom.Element;
 
+import static com.brentcroft.gtd.driver.Backend.XML_NAMESPACE_URI;
 import static com.brentcroft.util.XmlUtils.maybeAppendElementAttribute;
 
 /**
@@ -22,7 +22,7 @@ public abstract class DefaultGuiObject< T extends Object > extends AbstractGuiOb
 
     private void setAction( Element element, Map< String, Object > options, String action )
     {
-        maybeAppendElementAttribute( options, element, XML_NAMESPACE, ACTIONS_ATTRIBUTE, action );
+        maybeAppendElementAttribute( options, element, XML_NAMESPACE_URI, ACTIONS_ATTRIBUTE, action );
     }
 
 
