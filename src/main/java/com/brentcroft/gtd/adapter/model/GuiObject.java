@@ -27,13 +27,6 @@ public interface GuiObject< T > extends Gob
     String ACTIONS_ATTRIBUTE = "a:actions";
     String ATTRIBUTE_HASH = "hash";
 
-    /**
-     * Attributes
-     */
-    String XML_NAMESPACE_TAG = Backend.XML_NAMESPACE_TAG;
-    String XML_NAMESPACE = Backend.XML_NAMESPACE_URI;
-
-
     T getObject();
 
 
