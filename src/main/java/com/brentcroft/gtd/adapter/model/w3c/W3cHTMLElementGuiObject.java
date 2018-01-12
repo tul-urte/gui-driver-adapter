@@ -3,6 +3,7 @@ package com.brentcroft.gtd.adapter.model.w3c;
 import com.brentcroft.gtd.adapter.model.DefaultGuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
+import com.brentcroft.gtd.adapter.utils.DataLimit;
 import com.brentcroft.gtd.camera.GuiCameraObjectManager;
 import com.brentcroft.util.xpath.gob.Attribute;
 import com.brentcroft.util.xpath.gob.Gob;
@@ -79,23 +80,6 @@ public class W3cHTMLElementGuiObject< T extends HTMLElement > extends DefaultGui
         return getObject().getLocalName();
     }
 
-//
-//    @Override
-//    public boolean hasAttribute( String name )
-//    {
-//        return getObject().hasAttribute( name ) || super.hasAttribute( name );
-//    }
-
-//    @Override
-//    public String getAttribute( String name )
-//    {
-//        return DataLimit
-//                .MAX_TEXT_LENGTH
-//                .maybeTruncate( getObject().hasAttribute( name )
-//                        ? getObject().getAttribute( name )
-//                        : super.getAttribute( name ), null );
-//    }
-
 
     @Override
     public List< Attribute > readAttributes()
@@ -116,7 +100,11 @@ public class W3cHTMLElementGuiObject< T extends HTMLElement > extends DefaultGui
                     continue;
                 }
 
-                attributes.add( attributeForNameAndValue( w3cAttr.getLocalName(), w3cAttr.getValue() ) );
+                attributes.add( attributeForNameAndValue(
+                        w3cAttr.getLocalName(),
+                        DataLimit
+                                .MAX_TEXT_LENGTH
+                                .maybeTruncate( w3cAttr.getValue() ) ) );
             }
             else
             {
@@ -124,9 +112,10 @@ public class W3cHTMLElementGuiObject< T extends HTMLElement > extends DefaultGui
                         w3cAttr.getNamespaceURI(),
                         w3cAttr.getPrefix(),
                         w3cAttr.getLocalName(),
-                        w3cAttr.getValue() ) );
+                        DataLimit
+                                .MAX_TEXT_LENGTH
+                                .maybeTruncate( w3cAttr.getValue() ) ) );
             }
-
         }
 
         return attributes;
@@ -139,6 +128,11 @@ public class W3cHTMLElementGuiObject< T extends HTMLElement > extends DefaultGui
         return getObject().hasChildNodes();
     }
 
+    /**
+     * Load and adapt HTMLElement and Text children.
+     *
+     * @return a list of adaptees (GuiObjects)
+     */
     @Override
     public List< GuiObject > loadChildren()
     {
@@ -146,22 +140,19 @@ public class W3cHTMLElementGuiObject< T extends HTMLElement > extends DefaultGui
 
         for ( Node child = getObject().getFirstChild(); child != null; child = child.getNextSibling() )
         {
-            if ( child != null )
+            if ( child instanceof HTMLElement )
             {
-                if ( child instanceof HTMLElement )
+                children.add( getManager().adapt( child, this ) );
+            }
+            else if ( child instanceof org.w3c.dom.Text )
+            {
+                org.w3c.dom.Text text = ( org.w3c.dom.Text ) child;
+
+                String data = text.getData();
+
+                if ( data != null && ! data.trim().isEmpty() )
                 {
                     children.add( getManager().adapt( child, this ) );
-                }
-                else if ( child instanceof org.w3c.dom.Text )
-                {
-                    org.w3c.dom.Text text = ( org.w3c.dom.Text ) child;
-
-                    String data = text.getData();
-
-                    if ( data != null && ! data.trim().isEmpty() )
-                    {
-                        children.add( getManager().adapt( child, this ) );
-                    }
                 }
             }
         }
