@@ -37,7 +37,7 @@ public class W3cHTMLSelectElementGuiObject< T extends HTMLSelectElement > extend
     {
         super.buildProperties( element, options );
 
-        buildSelectModel( element, options );
+        //buildSelectModel( element, options );
 
         addIndexAction( element, options );
     }
