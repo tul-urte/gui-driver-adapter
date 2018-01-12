@@ -51,6 +51,7 @@ import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLAnchorElementGuiObject;
 import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLElementGuiObject;
 import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLIFrameElementGuiObject;
 import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLInputElementGuiObject;
+import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLLabelElementGuiObject;
 import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLSelectElementGuiObject;
 import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLTableGuiObject;
 import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLTextAreaElementGuiObject;
@@ -110,6 +111,7 @@ import org.w3c.dom.html.HTMLButtonElement;
 import org.w3c.dom.html.HTMLElement;
 import org.w3c.dom.html.HTMLIFrameElement;
 import org.w3c.dom.html.HTMLInputElement;
+import org.w3c.dom.html.HTMLLabelElement;
 import org.w3c.dom.html.HTMLSelectElement;
 import org.w3c.dom.html.HTMLTableElement;
 import org.w3c.dom.html.HTMLTextAreaElement;
@@ -273,6 +275,9 @@ public class GuiCameraObjectService
         adapters.add( gom.newAdapterSpecification( HTMLInputElement.class, W3cHTMLInputElementGuiObject.class ) );
         adapters.add( gom.newAdapterSpecification( HTMLTextAreaElement.class, W3cHTMLTextAreaElementGuiObject.class ) );
         adapters.add( gom.newAdapterSpecification( HTMLTableElement.class, W3cHTMLTableGuiObject.class ) );
+
+        adapters.add( gom.newAdapterSpecification( HTMLLabelElement.class, W3cHTMLLabelElementGuiObject.class ) );
+
 
         return adapters;
     }
