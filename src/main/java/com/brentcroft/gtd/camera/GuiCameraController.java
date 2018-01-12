@@ -25,8 +25,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.w3c.dom.Element;
 
-import static com.brentcroft.gtd.adapter.model.GuiObject.XML_NAMESPACE;
-import static com.brentcroft.gtd.adapter.model.GuiObject.XML_NAMESPACE_TAG;
+import static com.brentcroft.gtd.driver.Backend.XML_NAMESPACE_TAG;
+import static com.brentcroft.gtd.driver.Backend.XML_NAMESPACE_URI;
 import static java.lang.String.format;
 
 public class GuiCameraController extends NotificationBroadcasterSupport implements GuiCameraControllerMBean, JMXNotifier
@@ -135,7 +135,7 @@ public class GuiCameraController extends NotificationBroadcasterSupport implemen
         // a client snapshot
         Element element = XmlUtils.parse( format( "<snapshot xmlns:%s=\"%s\"/>",
                 XML_NAMESPACE_TAG,
-                XML_NAMESPACE ) ).getDocumentElement();
+                XML_NAMESPACE_URI ) ).getDocumentElement();
 
 
         guiObject.accept( new GuiObjectVisitor( element, options ) );
