@@ -3,6 +3,7 @@ package com.brentcroft.gtd.adapter.model.w3c;
 import com.brentcroft.gtd.adapter.model.DefaultGuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
+import com.brentcroft.gtd.adapter.utils.DataLimit;
 import com.brentcroft.gtd.adapter.utils.FXUtils;
 import com.brentcroft.gtd.camera.GuiCameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
@@ -14,7 +15,7 @@ import org.w3c.dom.Text;
 /**
  * Created by Alaric on 15/07/2017.
  */
-public class W3cTextGuiObject< T extends Text > extends DefaultGuiObject< T >// implements GuiObject.Text
+public class W3cTextGuiObject< T extends Text > extends DefaultGuiObject< T >
 {
     public W3cTextGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
     {
@@ -40,21 +41,15 @@ public class W3cTextGuiObject< T extends Text > extends DefaultGuiObject< T >// 
 
         Optional
                 .ofNullable( element.getOwnerDocument() )
-                .ifPresent( document -> element.appendChild( document.createTextNode( getObject().getData().trim() ) ) );
-
-        // addTextAction( element, options );
+                .ifPresent( document -> element
+                        .appendChild(
+                                document
+                                        .createTextNode(
+                                                DataLimit
+                                                        .MAX_TEXT_LENGTH
+                                                        .maybeTruncate(
+                                                                getObject()
+                                                                        .getData()
+                                                                        .trim() ) ) ) );
     }
-
-//
-//    @Override
-//    public String getText()
-//    {
-//        return getObject().getData();
-//    }
-//
-//    @Override
-//    public void setText( String text )
-//    {
-//        FXUtils.maybeInvokeNowOnFXThread( () -> getObject().setData( text ) );
-//    }
 }
