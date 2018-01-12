@@ -48,6 +48,11 @@ public enum DataLimit
         return Math.min( currentMax, min );
     }
 
+    public String maybeTruncate( String text )
+    {
+        return maybeTruncate( text, null );
+    }
+
     public String maybeTruncate( String text, Map< String, Object > options )
     {
         if ( text == null )
