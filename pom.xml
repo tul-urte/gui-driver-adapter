@@ -3,73 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.brentcroft.gtd</groupId>
+    <!-- -->
+    <parent>
+        <groupId>com.brentcroft.gtd</groupId>
+        <artifactId>gui-driver-parent</artifactId>
+        <version>${gui-driver.version}</version>
+    </parent>
+    <!-- -->
     <artifactId>gui-driver-adapter</artifactId>
-    <version>0.3</version>
-
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- -->
-        <gui-driver.version>0.3</gui-driver.version>
-        <log4j.version>1.2.16</log4j.version>
-        <junit.version>4.8.1</junit.version>
-        <commons-lang3.version>3.7</commons-lang3.version>
-    </properties>
-
+    <name>Gui Camera Adapter Implementation</name>
+    <!-- -->
     <dependencies>
         <dependency>
             <groupId>com.brentcroft.gtd</groupId>
-            <artifactId>gui-driver-utils</artifactId>
+            <artifactId>gui-driver</artifactId>
             <version>${gui-driver.version}</version>
         </dependency>
         <dependency>
             <groupId>com.brentcroft.gtd</groupId>
-            <artifactId>gui-driver-harness</artifactId>
+            <artifactId>gui-driver-events</artifactId>
             <version>${gui-driver.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
-        </dependency>
-
-
-
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-            <version>${junit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.10.19</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-
 </project>
