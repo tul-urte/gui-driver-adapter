@@ -2,13 +2,12 @@ package com.brentcroft.gtd.camera;
 
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectVisitor;
+import com.brentcroft.gtd.adapter.utils.DocumentNotificationBuffer;
+import com.brentcroft.gtd.adapter.utils.EventNotification;
 import com.brentcroft.gtd.driver.Backend;
 import com.brentcroft.gtd.driver.LocatorException;
-import com.brentcroft.gtd.utilities.CanonicalPath;
-import com.brentcroft.gtd.utilities.DocumentNotificationBuffer;
-import com.brentcroft.gtd.utilities.EventNotification;
-import com.brentcroft.gtd.utilities.HashCache;
-import com.brentcroft.gtd.utilities.events.JMXNotifier;
+import com.brentcroft.gtd.driver.utils.CanonicalPath;
+import com.brentcroft.gtd.driver.utils.HashCache;
 import com.brentcroft.util.DateUtils;
 import com.brentcroft.util.Waiter8;
 import com.brentcroft.util.XmlUtils;
@@ -21,17 +20,16 @@ import javafx.application.Platform;
 import javafx.event.Event;
 import javax.management.Notification;
 import javax.management.NotificationBroadcasterSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 
 import static com.brentcroft.gtd.driver.Backend.XML_NAMESPACE_TAG;
 import static com.brentcroft.gtd.driver.Backend.XML_NAMESPACE_URI;
 import static java.lang.String.format;
 
-public class GuiCameraController extends NotificationBroadcasterSupport implements GuiCameraControllerMBean, JMXNotifier
+public class GuiCameraController extends NotificationBroadcasterSupport implements GuiCameraControllerMBean
 {
-    private final static transient Log logger = LogFactory.getLog( GuiCameraController.class );
+    private final static transient Logger logger = Logger.getLogger( GuiCameraController.class );
 
     private Camera camera;
 
@@ -45,7 +43,7 @@ public class GuiCameraController extends NotificationBroadcasterSupport implemen
     public GuiCameraController( Camera camera )
     {
         this.camera = camera;
-        this.eventNotification = new EventNotification( camera, this );
+        this.eventNotification = new EventNotification( camera, this::sendNotification );
     }
 
     public synchronized Object shutdown( final int status )

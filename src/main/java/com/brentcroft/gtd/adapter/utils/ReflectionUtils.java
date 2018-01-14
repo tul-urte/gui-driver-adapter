@@ -3,8 +3,8 @@ package com.brentcroft.gtd.adapter.utils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import static java.lang.String.format;
 
@@ -16,7 +16,8 @@ import static java.lang.String.format;
  */
 public class ReflectionUtils
 {
-    private final static transient Log logger = LogFactory.getLog( ReflectionUtils.class );
+    private final static Logger logger = Logger.getLogger( ReflectionUtils.class );
+
     private final static Object[] EMPTY_OBJECT_ARRAY = {};
 
     // represents the class of null values
@@ -122,7 +123,7 @@ public class ReflectionUtils
                 }
             }
 
-            if ( logger.isWarnEnabled() )
+            if ( logger.isEnabledFor( Level.WARN ) )
             {
                 StringBuilder b = new StringBuilder();
 
@@ -151,7 +152,6 @@ public class ReflectionUtils
     }
 
 
-
     /**
      * Note that although superficially similar to other ReflectionUtils classes (e.g. Spring, Apache),
      * <p>
@@ -163,7 +163,7 @@ public class ReflectionUtils
      * @param paramTypes
      * @return the Constructor if found otherwise null (i.e. does not throw NoSuchMethodException)
      */
-    public static <T> Constructor<T> findConstructor( Class<T> clazz, Class... paramTypes )
+    public static < T > Constructor< T > findConstructor( Class< T > clazz, Class... paramTypes )
     {
         try
         {
@@ -195,7 +195,7 @@ public class ReflectionUtils
                 }
             }
 
-            if ( logger.isWarnEnabled() )
+            if ( logger.isEnabledFor( Level.WARN ) )
             {
                 StringBuilder b = new StringBuilder();
 
@@ -221,8 +221,6 @@ public class ReflectionUtils
             return null;
         }
     }
-
-
 
 
     private static boolean compatibleParamTypes( Class[] paramTypes, Class[] candidateTypes )

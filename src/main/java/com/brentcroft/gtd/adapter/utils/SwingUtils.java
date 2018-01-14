@@ -2,16 +2,15 @@ package com.brentcroft.gtd.adapter.utils;
 
 import com.brentcroft.util.Waiter8;
 import javax.swing.SwingUtilities;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import static java.lang.String.format;
 
 public class SwingUtils
 {
-    private final static transient Log logger = LogFactory.getLog( SwingUtils.class );
+    private final static transient Logger logger = Logger.getLogger( SwingUtils.class );
 
-    final static long DEFAULT_CALL_TIMEOUT = 5 * 1000;
+    private final static long DEFAULT_CALL_TIMEOUT = 5 * 1000;
 
     public static void maybeInvokeNowOnEventThread( Runnable runnable )
     {

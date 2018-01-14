@@ -3,7 +3,7 @@ package com.brentcroft.gtd.adapter.model.w3c;
 import com.brentcroft.gtd.adapter.model.AttrSpec;
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
-import com.brentcroft.gtd.adapter.utils.DataLimit;
+import com.brentcroft.gtd.driver.utils.DataLimit;
 import com.brentcroft.gtd.camera.GuiCameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.ArrayList;

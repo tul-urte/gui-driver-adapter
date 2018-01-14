@@ -4,16 +4,15 @@ import com.brentcroft.util.Waiter8;
 import java.lang.reflect.Method;
 import java.util.function.Consumer;
 import javafx.application.Platform;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import static java.lang.String.format;
 
 public class FXUtils
 {
-    private final static transient Log logger = LogFactory.getLog( FXUtils.class );
+    private final static Logger logger = Logger.getLogger( FXUtils.class );
 
-    final static long DEFAULT_CALL_TIMEOUT = 5 * 1000;
+    private final static long DEFAULT_CALL_TIMEOUT = 5 * 1000;
 
 
     private static void handleException( Exception originalException, Consumer< Exception > exceptionHandler )

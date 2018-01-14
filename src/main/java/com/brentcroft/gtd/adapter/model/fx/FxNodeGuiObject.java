@@ -13,8 +13,7 @@ import java.util.Map;
 import java.util.function.Function;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 
 /**
@@ -22,7 +21,7 @@ import org.w3c.dom.Element;
  */
 public class FxNodeGuiObject< T extends Node > extends DefaultGuiObject< T >
 {
-    private final static transient Log logger = LogFactory.getLog( FxNodeGuiObject.class );
+    private final static Logger logger = Logger.getLogger( FxNodeGuiObject.class );
 
     public FxNodeGuiObject( T t, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager hgom )
     {

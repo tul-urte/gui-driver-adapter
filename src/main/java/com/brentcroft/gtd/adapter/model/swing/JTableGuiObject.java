@@ -4,7 +4,7 @@ import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
 import com.brentcroft.gtd.adapter.utils.RobotUtils;
 import com.brentcroft.gtd.camera.GuiCameraObjectManager;
-import com.brentcroft.gtd.utilities.DataLimit;
+import com.brentcroft.gtd.driver.utils.DataLimit;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.awt.Point;
 import java.awt.Rectangle;

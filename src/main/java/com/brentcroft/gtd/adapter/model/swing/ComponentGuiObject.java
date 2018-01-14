@@ -13,8 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 
 import static java.util.Optional.ofNullable;
@@ -24,7 +23,7 @@ import static java.util.Optional.ofNullable;
  */
 public class ComponentGuiObject< T extends Component > extends DefaultGuiObject< T >
 {
-    private final static transient Log logger = LogFactory.getLog( ComponentGuiObject.class );
+    private final static Logger logger = Logger.getLogger( ComponentGuiObject.class );
 
     public ComponentGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
     {

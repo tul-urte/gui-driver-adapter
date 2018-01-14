@@ -6,9 +6,10 @@ import com.brentcroft.gtd.adapter.model.GuiObjectAdapter;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
 import com.brentcroft.gtd.adapter.model.SnapshotGuiObject;
 import com.brentcroft.gtd.adapter.model.SnapshotGuiObjectConsultant;
+import com.brentcroft.gtd.adapter.utils.HashCacheImpl;
 import com.brentcroft.gtd.adapter.utils.ReflectionUtils;
 import com.brentcroft.gtd.driver.GuiObjectManager;
-import com.brentcroft.gtd.utilities.HashCache;
+import com.brentcroft.gtd.driver.utils.HashCache;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -35,7 +36,7 @@ public class GuiCameraObjectManager implements GuiObjectManager< GuiObject >
 {
     private static final Logger logger = Logger.getLogger( GuiCameraObjectManager.class.getName() );
 
-    private final HashCache hashCache = new HashCache();
+    private final HashCache hashCache = new HashCacheImpl();
 
     private final static Comparator< GuiObjectAdapter< ? > > COMPARATOR = ( h1, h2 ) -> {
         try

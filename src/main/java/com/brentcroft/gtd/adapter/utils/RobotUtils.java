@@ -1,6 +1,5 @@
 package com.brentcroft.gtd.adapter.utils;
 
-import com.brentcroft.gtd.utilities.KeyEventParser;
 import com.sun.javafx.event.EventUtil;
 import com.sun.javafx.robot.FXRobot;
 import com.sun.javafx.robot.FXRobotFactory;
@@ -14,7 +13,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
-import javafx.event.Event;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
@@ -22,14 +20,13 @@ import javafx.scene.control.Tab;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import static java.lang.String.format;
 
 public class RobotUtils
 {
-    private final static transient Log logger = LogFactory.getLog( RobotUtils.class );
+    private final static Logger logger = Logger.getLogger( RobotUtils.class );
 
     private static final ExecutorService executor = Executors.newSingleThreadExecutor();
 

@@ -3,7 +3,7 @@ package com.brentcroft.gtd.adapter.model.swing;
 import com.brentcroft.gtd.adapter.model.AttrSpec;
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
-import com.brentcroft.gtd.adapter.utils.DataLimit;
+import com.brentcroft.gtd.driver.utils.DataLimit;
 import com.brentcroft.gtd.adapter.utils.FXUtils;
 import com.brentcroft.gtd.adapter.utils.SwingUtils;
 import com.brentcroft.gtd.camera.GuiCameraObjectManager;
