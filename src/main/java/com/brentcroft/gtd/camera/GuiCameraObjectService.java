@@ -4,7 +4,7 @@ import com.brentcroft.gtd.adapter.model.DefaultGuiObject;
 import com.brentcroft.gtd.adapter.model.SnapshotGuiObject;
 import com.brentcroft.gtd.adapter.model.fx.FxAccordionGuiObject;
 import com.brentcroft.gtd.adapter.model.fx.FxButtonBarGuiObject;
-import com.brentcroft.gtd.adapter.model.fx.FxButtonGuiObject;
+import com.brentcroft.gtd.adapter.model.fx.FxButtonBaseGuiObject;
 import com.brentcroft.gtd.adapter.model.fx.FxControlGuiObject;
 import com.brentcroft.gtd.adapter.model.fx.FxHTMLEditorGuiObject;
 import com.brentcroft.gtd.adapter.model.fx.FxLabeledGuiObject;
@@ -19,8 +19,6 @@ import com.brentcroft.gtd.adapter.model.fx.FxSplitPaneGuiObject;
 import com.brentcroft.gtd.adapter.model.fx.FxSwingNodeGuiObject;
 import com.brentcroft.gtd.adapter.model.fx.FxTabGuiObject;
 import com.brentcroft.gtd.adapter.model.fx.FxTabPaneGuiObject;
-import com.brentcroft.gtd.adapter.model.fx.FxTextAreaGuiObject;
-import com.brentcroft.gtd.adapter.model.fx.FxTextFieldGuiObject;
 import com.brentcroft.gtd.adapter.model.fx.FxTextInputControlGuiObject;
 import com.brentcroft.gtd.adapter.model.fx.FxTitledPaneGuiObject;
 import com.brentcroft.gtd.adapter.model.fx.FxToolbarGuiObject;
@@ -48,6 +46,7 @@ import com.brentcroft.gtd.adapter.model.swing.JTextComponentGuiObject;
 import com.brentcroft.gtd.adapter.model.swing.JTreeGuiObject;
 import com.brentcroft.gtd.adapter.model.w3c.W3CHTMLElementGuiObjectConsultant;
 import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLAnchorElementGuiObject;
+import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLButtonElement;
 import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLElementGuiObject;
 import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLIFrameElementGuiObject;
 import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLInputElementGuiObject;
@@ -55,7 +54,6 @@ import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLLabelElementGuiObject;
 import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLSelectElementGuiObject;
 import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLTableGuiObject;
 import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLTextAreaElementGuiObject;
-import com.brentcroft.gtd.adapter.model.w3c.W3cHTMLButtonElement;
 import com.brentcroft.gtd.adapter.model.w3c.W3cTextGuiObject;
 import com.brentcroft.gtd.adapter.model.w3c.W3cWebViewGuiObject;
 import java.awt.Component;
@@ -68,8 +66,8 @@ import javafx.embed.swing.SwingNode;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonBase;
 import javafx.scene.control.Control;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.ListView;
@@ -80,8 +78,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToolBar;
@@ -138,32 +134,7 @@ public class GuiCameraObjectService
         gom.install( buildFxAdapters( properties ) );
         gom.install( buildW3CAdapters( properties ) );
 
-
-        gom.configure(properties);
-
-        // see GuiCameraObjectService.buildBrowserAdapters
-        // don't want any of: WebTemplatePane, ModelTreePane; to be descended through
-//        gom
-//                .addAdapter(
-//                        new AbstractGuiObjectAdapter< WebTemplatePane >( WebTemplatePane.class )
-//                        {
-//                            @Override
-//                            public GuiObject< WebTemplatePane > adapt( WebTemplatePane o )
-//                            {
-//                                return new DefaultGuiObject<>( o, null, getObjectManager() );
-//                            }
-//                        } );
-//
-//        gom
-//                .addAdapter(
-//                        new AbstractGuiObjectAdapter< ModelTreePane >( ModelTreePane.class )
-//                        {
-//                            @Override
-//                            public GuiObject< ModelTreePane > adapt( ModelTreePane o )
-//                            {
-//                                return new DefaultGuiObject<>( o, null, getObjectManager() );
-//                            }
-//                        } );
+        gom.configure( properties );
     }
 
     private List< GuiCameraObjectManager.AdapterSpecification > buildDefaultAdapters( Properties properties )
@@ -245,11 +216,9 @@ public class GuiCameraObjectService
 
         adapters.add( gom.newAdapterSpecification( Labeled.class, FxLabeledGuiObject.class ) );
         adapters.add( gom.newAdapterSpecification( TitledPane.class, FxTitledPaneGuiObject.class ) );
-        adapters.add( gom.newAdapterSpecification( Button.class, FxButtonGuiObject.class ) );
+        adapters.add( gom.newAdapterSpecification( ButtonBase.class, FxButtonBaseGuiObject.class ) );
 
         adapters.add( gom.newAdapterSpecification( TextInputControl.class, FxTextInputControlGuiObject.class ) );
-        adapters.add( gom.newAdapterSpecification( TextField.class, FxTextFieldGuiObject.class ) );
-        adapters.add( gom.newAdapterSpecification( TextArea.class, FxTextAreaGuiObject.class ) );
 
         return adapters;
     }
