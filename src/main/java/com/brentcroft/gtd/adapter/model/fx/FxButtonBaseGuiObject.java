@@ -6,18 +6,16 @@ import com.brentcroft.gtd.adapter.utils.FXUtils;
 import com.brentcroft.gtd.camera.GuiCameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.Map;
-import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBase;
 import org.w3c.dom.Element;
 
-/**
- * Created by Alaric on 15/07/2017.
- */
-public class FxButtonGuiObject< T extends Button > extends FxLabeledGuiObject< T > implements GuiObject.Click
+public class FxButtonBaseGuiObject< T extends ButtonBase > extends FxLabeledGuiObject< T > implements GuiObject.Click
 {
-    public FxButtonGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public FxButtonBaseGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
     {
         super( go, parent, guiObjectConsultant, objectManager );
     }
+
 
     @Override
     public void buildProperties( Element element, Map< String, Object > options )

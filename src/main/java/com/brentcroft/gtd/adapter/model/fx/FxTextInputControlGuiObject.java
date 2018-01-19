@@ -5,6 +5,7 @@ import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
 import com.brentcroft.gtd.adapter.utils.FXUtils;
 import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.driver.utils.DataLimit;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.Arrays;
 import java.util.List;
@@ -60,10 +61,9 @@ public class FxTextInputControlGuiObject< T extends TextInputControl > extends F
         return attrSpec;
     }
 
-    //"name", "disabled", "visible", "focus"
     enum Attr implements AttrSpec< TextInputControl >
     {
-        TEXT( "text", go -> ofNullable( go.getText() ).orElse( null ) );
+        TEXT( "text", go -> ofNullable( DataLimit.MAX_TEXT_LENGTH.maybeTruncate( go.getText() ) ).orElse( null ) );
 
         final String n;
         final Function< TextInputControl, String > f;
