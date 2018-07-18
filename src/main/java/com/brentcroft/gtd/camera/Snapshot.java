@@ -32,13 +32,25 @@ public class Snapshot
                 .addAll( Arrays
                         .asList( java.awt.Window.getWindows() ) );
 
-        children
-                .addAll(
-                        com.sun.javafx.stage.StageHelper.getStages()
-                                .stream()
-                                .map( stage -> stage.getScene().getRoot() )
-                                .collect( Collectors.toList() )
-                );
+        try {
+
+            children
+                    .addAll(
+                            com.sun.javafx.stage.StageHelper.getStages()
+                                    .stream()
+                                    .map(stage -> stage.getScene().getRoot())
+                                    .collect(Collectors.toList())
+                    );
+        }
+        catch (Exception e)
+        {
+            children.addAll(
+                javafx.stage.Window.getWindows()
+                        .stream()
+                        .map( s -> s.getScene().getRoot() )
+                        .collect( Collectors.toList() )
+            );
+        }
 
         return children;
     }
