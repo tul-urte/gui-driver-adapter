@@ -2,12 +2,12 @@ package com.brentcroft.gtd.adapter.utils;
 
 import com.brentcroft.gtd.driver.Backend;
 import com.brentcroft.gtd.driver.GuiObjectService;
+import com.brentcroft.gtd.driver.utils.DataLimit;
 import com.brentcroft.gtd.events.AWTEventUtils;
 import com.brentcroft.gtd.events.DOMEventHandler;
 import com.brentcroft.gtd.events.DOMEventUtils;
 import com.brentcroft.gtd.events.FXEventUtils;
 import com.brentcroft.gtd.events.JMXNotifier;
-import com.brentcroft.gtd.driver.utils.DataLimit;
 import com.brentcroft.util.DateUtils;
 import com.sun.javafx.stage.StageHelper;
 import java.awt.Toolkit;
@@ -106,16 +106,20 @@ public class EventNotification
         maybeSetElementAttribute( element, "params", params );
         maybeSetElementAttribute( element, "timestamp", DateUtils.timestamp() );
 
-        try
+        // if target is null then will snapshot the entire gui
+        if ( target != null )
         {
-            guiObjectService
-                    .getGuiObjectLocator()
-                    .takeSnapshot( target, element, DataLimit.getShallowOptions() );
-        }
-        catch ( Exception e )
-        {
-            // not adaptable, whatever...
-            return null;
+            try
+            {
+                guiObjectService
+                        .getGuiObjectLocator()
+                        .takeSnapshot( target, element, DataLimit.getShallowOptions() );
+            }
+            catch ( Exception e )
+            {
+                // not adaptable, whatever...
+                logger.warn( format( "Snapshot error: event=[%s], id=[%s], target=[%s]: %s", eventTag, id, target, e ) );
+            }
         }
 
         removeTrimmedEmptyTextNodes( document );
@@ -277,13 +281,17 @@ public class EventNotification
                     return;
                 }
 
+                String eventType = event.getType();
+                String params = domEventUtils.getParams( event );
+                Object target = event.getTarget();
+
                 // copy values
                 Notification n = buildNotification(
                         "dom-event",
-                        event.getType(),
+                        eventType,
                         notificationSequenceNumber.incrementAndGet(),
-                        domEventUtils.getParams( event ),
-                        event.getTarget() );
+                        params,
+                        target );
 
                 if ( n != null )
                 {
