@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
+
+
 /**
  * A synthetic top-level parent for all AWT and FX (and HTML) gui components.
  *
@@ -12,6 +15,8 @@ import java.util.stream.Collectors;
  */
 public class Snapshot
 {
+	 private final static transient Logger logger = Logger.getLogger( Snapshot.class );
+	 
     public < T extends Object > List< T > getChildren()
     {
         List children = new ArrayList<>();
@@ -42,14 +47,18 @@ public class Snapshot
                                     .collect(Collectors.toList())
                     );
         }
-        catch (Exception e)
+        catch (Throwable e)
         {
-            children.addAll(
-                javafx.stage.Window.getWindows()
-                        .stream()
-                        .map( s -> s.getScene().getRoot() )
-                        .collect( Collectors.toList() )
-            );
+        	logger.warn(e.getMessage());
+        	
+        	// java 9
+        	
+//            children.addAll(
+//                javafx.stage.Window.getWindows()
+//                        .stream()
+//                        .map( s -> s.getScene().getRoot() )
+//                        .collect( Collectors.toList() )
+//            );
         }
 
         return children;
