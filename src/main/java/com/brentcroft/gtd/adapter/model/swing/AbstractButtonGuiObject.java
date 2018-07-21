@@ -4,7 +4,7 @@ import com.brentcroft.gtd.adapter.model.AttrSpec;
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
 import com.brentcroft.gtd.adapter.utils.SwingUtils;
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +20,7 @@ import static java.util.Optional.ofNullable;
  */
 public class AbstractButtonGuiObject< T extends AbstractButton > extends JComponentGuiObject< T > implements GuiObject.Click
 {
-    public AbstractButtonGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public AbstractButtonGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager objectManager )
     {
         super( go, parent, guiObjectConsultant, objectManager );
     }
