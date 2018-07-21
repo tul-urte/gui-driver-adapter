@@ -5,7 +5,7 @@ import com.brentcroft.gtd.adapter.model.DefaultGuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
 import com.brentcroft.gtd.adapter.utils.FXUtils;
 import com.brentcroft.gtd.adapter.utils.RobotUtils;
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +23,7 @@ public class FxNodeGuiObject< T extends Node > extends DefaultGuiObject< T >
 {
     private final static Logger logger = Logger.getLogger( FxNodeGuiObject.class );
 
-    public FxNodeGuiObject( T t, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager hgom )
+    public FxNodeGuiObject( T t, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager hgom )
     {
         super( t, parent, guiObjectConsultant, hgom );
     }

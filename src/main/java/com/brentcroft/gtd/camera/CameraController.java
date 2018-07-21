@@ -27,9 +27,9 @@ import static com.brentcroft.gtd.driver.Backend.XML_NAMESPACE_TAG;
 import static com.brentcroft.gtd.driver.Backend.XML_NAMESPACE_URI;
 import static java.lang.String.format;
 
-public class GuiCameraController extends NotificationBroadcasterSupport implements GuiCameraControllerMBean
+public class CameraController extends NotificationBroadcasterSupport implements CameraControllerMBean
 {
-    private final static transient Logger logger = Logger.getLogger( GuiCameraController.class );
+    private final static transient Logger logger = Logger.getLogger( CameraController.class );
 
     private Camera camera;
 
@@ -40,7 +40,7 @@ public class GuiCameraController extends NotificationBroadcasterSupport implemen
     private EventNotification eventNotification;
 
 
-    public GuiCameraController( Camera camera )
+    public CameraController( Camera camera )
     {
         this.camera = camera;
         this.eventNotification = new EventNotification( camera, this::sendNotification );
@@ -237,14 +237,13 @@ public class GuiCameraController extends NotificationBroadcasterSupport implemen
         try
         {
             new Waiter8()
-                    .until( () -> null == camera.getObjectAtPath( path ) )
                     .onTimeout( millis -> {
                         throw new LocatorException(
                                 format( "Object still exists at path [%s] after [%d] millis", path, millis ) );
                     } )
                     .withTimeoutMillis( DateUtils.secondsToMillis( timeout ) )
                     .withDelayMillis( DateUtils.secondsToMillis( pollInterval ) )
-                    .start();
+                    .until( () -> null == camera.getObjectAtPath( path ) );
 
             return true;
         }

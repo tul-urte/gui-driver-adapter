@@ -1,6 +1,6 @@
 package com.brentcroft.gtd.adapter.model;
 
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,7 @@ import static com.brentcroft.util.XmlUtils.maybeAppendElementAttribute;
  */
 public abstract class DefaultGuiObject< T extends Object > extends AbstractGuiObject< T > implements GuiObject.Robot
 {
-    public DefaultGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public DefaultGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager objectManager )
     {
         super( go, parent, guiObjectConsultant, objectManager );
     }

@@ -14,7 +14,6 @@ public class FXUtils
 
     private final static long DEFAULT_CALL_TIMEOUT = 5 * 1000;
 
-
     private static void handleException( Exception originalException, Consumer< Exception > exceptionHandler )
     {
         if ( exceptionHandler == null )
@@ -29,7 +28,8 @@ public class FXUtils
             }
             catch ( Exception e2 )
             {
-                logger.warn( format( "Exception Handler raised exception: original exception=[%s]", originalException ), e2 );
+                logger.warn( format( "Exception Handler raised exception: original exception=[%s]", originalException ),
+                        e2 );
             }
         }
     }
@@ -57,8 +57,7 @@ public class FXUtils
             final Exception[] exception = { null };
             final Boolean[] completed = { false };
 
-            Platform.runLater( () ->
-            {
+            Platform.runLater( () -> {
                 try
                 {
                     runnable.run();
@@ -74,13 +73,12 @@ public class FXUtils
             } );
 
             new Waiter8()
-                    .until( () -> completed[ 0 ] )
-                    .onTimeout( millis ->
-                    {
-                        exception[ 0 ] = new Waiter8.TimeoutException( format( "Gave up waiting after [%s] millis.", millis ) );
+                    .onTimeout( millis -> {
+                        exception[ 0 ] = new Waiter8.TimeoutException(
+                                format( "Gave up waiting after [%s] millis.", millis ) );
                     } )
                     .withTimeoutMillis( DEFAULT_CALL_TIMEOUT )
-                    .start();
+                    .until( () -> completed[ 0 ] );
 
             if ( exception[ 0 ] != null )
             {
@@ -89,8 +87,8 @@ public class FXUtils
         }
     }
 
-
-    public static Object reflectiveCallRunAndWait( final Object guiObject, final String methodName, final Object... args )
+    public static Object reflectiveCallRunAndWait( final Object guiObject, final String methodName,
+            final Object... args )
     {
         final Object[] result = { null };
         final Boolean[] completed = { false };
@@ -103,11 +101,11 @@ public class FXUtils
         }
         catch ( NoSuchMethodException e )
         {
-            throw new RuntimeException( format( "Unavailable method [%s] on gui object [%s]; %s", methodName, guiObject, e ) );
+            throw new RuntimeException(
+                    format( "Unavailable method [%s] on gui object [%s]; %s", methodName, guiObject, e ) );
         }
 
-        Platform.runLater( () ->
-        {
+        Platform.runLater( () -> {
             try
             {
                 result[ 0 ] = method[ 0 ].invoke( guiObject, args );
@@ -115,7 +113,8 @@ public class FXUtils
             catch ( Exception e )
             {
                 // no stack trace
-                throw new RuntimeException( format( "Error invoking method [%s] on gui object [%s]; %s", methodName, guiObject, e ) );
+                throw new RuntimeException(
+                        format( "Error invoking method [%s] on gui object [%s]; %s", methodName, guiObject, e ) );
             }
             finally
             {
@@ -124,15 +123,13 @@ public class FXUtils
         } );
 
         new Waiter8()
-                .until( () -> completed[ 0 ] )
-                .onTimeout( millis ->
-                {
+                .withTimeoutMillis( DEFAULT_CALL_TIMEOUT )
+                .onTimeout( millis -> {
                     throw new Waiter8.TimeoutException( format( "Gave up waiting after [%s] millis.", millis ) );
                 } )
-                .withTimeoutMillis( DEFAULT_CALL_TIMEOUT );
+                .until( () -> completed[ 0 ] );
 
         return result[ 0 ];
     }
-
 
 }

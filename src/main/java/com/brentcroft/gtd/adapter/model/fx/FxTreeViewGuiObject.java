@@ -3,7 +3,7 @@ package com.brentcroft.gtd.adapter.model.fx;
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
 import com.brentcroft.gtd.adapter.utils.FXUtils;
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +18,7 @@ import static java.lang.String.format;
  */
 public class FxTreeViewGuiObject< T extends TreeView > extends FxControlGuiObject< T > implements GuiObject.Tree
 {
-    public FxTreeViewGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public FxTreeViewGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager objectManager )
     {
         super( go, parent, guiObjectConsultant, objectManager );
     }

@@ -4,7 +4,7 @@ import com.brentcroft.gtd.adapter.model.AttrSpec;
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
 import com.brentcroft.gtd.adapter.utils.FXUtils;
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +19,7 @@ import org.w3c.dom.Element;
  */
 public class FxTabPaneGuiObject< T extends TabPane > extends FxNodeGuiObject< T > implements GuiObject.Index
 {
-    public FxTabPaneGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager gom )
+    public FxTabPaneGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager gom )
     {
         super( go, parent, guiObjectConsultant, gom );
     }

@@ -6,7 +6,7 @@ import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
 import com.brentcroft.gtd.adapter.utils.FXUtils;
 import com.brentcroft.gtd.adapter.utils.RobotUtils;
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +22,7 @@ import static java.util.Optional.ofNullable;
  */
 public class FxMenuItemGuiObject< T extends MenuItem > extends DefaultGuiObject< T > implements GuiObject.Click
 {
-    public FxMenuItemGuiObject( T t, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager hgom )
+    public FxMenuItemGuiObject( T t, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager hgom )
     {
         super( t, parent, guiObjectConsultant, hgom );
     }

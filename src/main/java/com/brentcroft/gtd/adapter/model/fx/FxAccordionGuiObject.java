@@ -2,7 +2,7 @@ package com.brentcroft.gtd.adapter.model.fx;
 
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import javafx.scene.control.Accordion;
  */
 public class FxAccordionGuiObject< T extends Accordion > extends FxControlGuiObject< T >
 {
-    public FxAccordionGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public FxAccordionGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager objectManager )
     {
         super( go, parent, guiObjectConsultant, objectManager );
     }

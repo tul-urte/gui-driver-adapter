@@ -24,13 +24,21 @@ import static java.lang.String.format;
  */
 public class Camera implements GuiObjectLocator< GuiObject >, GuiObjectService
 {
-    private GuiCameraObjectService service = new GuiCameraObjectService();
+    private final CameraObjectService service;
 
     public Camera()
     {
+    	service = createService();
         service.install( new Properties() );
     }
 
+    
+    protected CameraObjectService createService()
+    {
+    	return new CameraObjectService();
+    }
+    
+    
     @Override
     public void shutdown()
     {
@@ -73,7 +81,7 @@ public class Camera implements GuiObjectLocator< GuiObject >, GuiObjectService
     }
 
 
-    public GuiCameraObjectManager getObjectManager()
+    public CameraObjectManager getObjectManager()
     {
         return service.getManager();
     }
@@ -85,9 +93,9 @@ public class Camera implements GuiObjectLocator< GuiObject >, GuiObjectService
     }
 
     @Override
-    public GuiCameraControllerMBean getController()
+    public CameraControllerMBean getController()
     {
-        return new GuiCameraController( this );
+        return new CameraController( this );
     }
 
 
@@ -157,5 +165,16 @@ public class Camera implements GuiObjectLocator< GuiObject >, GuiObjectService
         }
 
         return document;
+    }
+    
+    public String toString()
+    {
+        StringBuilder b = new StringBuilder();
+        
+        b.append(getClass().getSimpleName());
+        
+        b.append(getObjectManager());
+        
+        return b.toString();
     }
 }

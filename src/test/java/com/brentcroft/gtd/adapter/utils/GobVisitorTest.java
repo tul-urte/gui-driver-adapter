@@ -2,7 +2,7 @@ package com.brentcroft.gtd.adapter.utils;
 
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.camera.Camera;
-import com.brentcroft.gtd.camera.GuiCameraObjectService;
+import com.brentcroft.gtd.camera.CameraObjectService;
 import com.brentcroft.gtd.camera.Snapshot;
 import com.brentcroft.util.XmlUtils;
 import java.util.Properties;
@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class GobVisitorTest
 {
-    GuiCameraObjectService gos = new GuiCameraObjectService();
+    CameraObjectService gos = new CameraObjectService();
 
 
     @Test
