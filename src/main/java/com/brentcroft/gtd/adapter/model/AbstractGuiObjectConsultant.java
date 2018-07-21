@@ -60,12 +60,12 @@ public abstract class AbstractGuiObjectConsultant< T > implements GuiObjectConsu
         tagsToIgnore.clear();
         tagsToIgnore.addAll( properties.containsKey( format( TAGS_TO_IGNORE_KEY, name ) )
                 ? upcastSet( properties.getProperty( format( TAGS_TO_IGNORE_KEY, name ) ) )
-                : Collections.EMPTY_SET );
+                : Collections.emptySet() );
 
         attributesToIgnore.clear();
         attributesToIgnore.addAll( properties.containsKey( format( ATTRIBUTES_TO_IGNORE_KEY, name ) )
                 ? upcastSet( properties.getProperty( format( ATTRIBUTES_TO_IGNORE_KEY, name ) ) )
-                : Collections.EMPTY_SET );
+                : Collections.emptySet() );
 
         logger.debug( format(
                 "Configured consultant for [%s]:%n ignoreInvisible=[%s]%n insertScreenCoords=[%s]%n tagsToIgnore=%s%n attributesToIgnore=%s",
