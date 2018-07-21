@@ -1,7 +1,7 @@
 package com.brentcroft.gtd.adapter.model.swing;
 
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import javax.swing.JEditorPane;
 
@@ -10,7 +10,7 @@ import javax.swing.JEditorPane;
  */
 public class JEditorPaneGuiObject< T extends JEditorPane > extends JTextComponentGuiObject< T >
 {
-    public JEditorPaneGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public JEditorPaneGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager objectManager )
     {
         super( go, parent, guiObjectConsultant, objectManager );
     }

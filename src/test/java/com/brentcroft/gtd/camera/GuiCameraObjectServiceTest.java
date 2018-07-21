@@ -24,7 +24,7 @@ public class GuiCameraObjectServiceTest
     @Test
     public void install() throws Exception
     {
-        GuiCameraObjectService gos = new GuiCameraObjectService();
+        CameraObjectService gos = new CameraObjectService();
 
         gos.install( new Properties() );
 

@@ -2,7 +2,7 @@ package com.brentcroft.gtd.adapter.model.swing;
 
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import javafx.embed.swing.JFXPanel;
  */
 public class JFXPanelGuiObject< T extends JFXPanel > extends JComponentGuiObject< T >
 {
-    public JFXPanelGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public JFXPanelGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager objectManager )
     {
         super( go, parent, guiObjectConsultant, objectManager );
     }

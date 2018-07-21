@@ -4,8 +4,12 @@ import com.brentcroft.gtd.adapter.model.AttrSpec;
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
 import com.brentcroft.gtd.adapter.utils.SwingUtils;
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
+import com.brentcroft.gtd.driver.utils.DataLimit;
 import com.brentcroft.util.xpath.gob.Gob;
+
+import static java.util.Optional.ofNullable;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +22,7 @@ import org.w3c.dom.Element;
  */
 public class JTextComponentGuiObject< T extends JTextComponent > extends JComponentGuiObject< T > implements GuiObject.Text, GuiObject.Click
 {
-    public JTextComponentGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public JTextComponentGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager objectManager )
     {
         super( go, parent, guiObjectConsultant, objectManager );
     }
@@ -67,7 +71,7 @@ public class JTextComponentGuiObject< T extends JTextComponent > extends JCompon
 
     enum Attr implements AttrSpec< JTextComponent >
     {
-        TEXT( "text", go -> "" + go.getText() );
+        TEXT( "text", go -> ofNullable( DataLimit.MAX_TEXT_LENGTH.maybeTruncate( go.getText() ) ).orElse( null ) );
 
         final String n;
         final Function< JTextComponent, String > f;
