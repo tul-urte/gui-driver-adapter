@@ -1,6 +1,6 @@
 package com.brentcroft.gtd.adapter.model;
 
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.gtd.driver.ObjectLostException;
 import com.brentcroft.util.xpath.gob.Attribute;
 import com.brentcroft.util.xpath.gob.Gob;
@@ -21,16 +21,16 @@ import static java.lang.String.format;
 public abstract class AbstractGuiObject< T > implements GuiObject< T >
 {
     // values
-    protected String ATTRIBUTE_VALUE_TAB = "tab";
-    protected String ATTRIBUTE_VALUE_TABS = "tabs";
-    protected String ATTRIBUTE_VALUE_TABLE = "table";
-    protected String ATTRIBUTE_VALUE_TREE = "tree";
-    protected String ATTRIBUTE_VALUE_INDEX = "index";
-    protected String ATTRIBUTE_VALUE_TEXT = "text";
-    protected String ATTRIBUTE_VALUE_ROBOT = "robot";
-    protected String ATTRIBUTE_VALUE_CLICK = "click";
+    protected static String ATTRIBUTE_VALUE_TAB = "tab";
+    protected static String ATTRIBUTE_VALUE_TABS = "tabs";
+    protected static String ATTRIBUTE_VALUE_TABLE = "table";
+    protected static String ATTRIBUTE_VALUE_TREE = "tree";
+    protected static String ATTRIBUTE_VALUE_INDEX = "index";
+    protected static String ATTRIBUTE_VALUE_TEXT = "text";
+    protected static String ATTRIBUTE_VALUE_ROBOT = "robot";
+    protected static String ATTRIBUTE_VALUE_CLICK = "click";
 
-    protected String ATTRIBUTE_HREF = "href";
+    protected static String ATTRIBUTE_HREF = "href";
 
 
     protected final Gob parent;
@@ -39,13 +39,13 @@ public abstract class AbstractGuiObject< T > implements GuiObject< T >
 
     protected final int guiObjectKey;
     protected final transient WeakReference< T > guiObject;
-    protected final GuiCameraObjectManager manager;
+    protected final CameraObjectManager manager;
     protected final GuiObjectConsultant< T > guiObjectConsultant;
 
     protected List< AttrSpec > attrSpec;
 
 
-    public AbstractGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public AbstractGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager objectManager )
     {
         this.guiObject = new WeakReference< T >( go );
         this.guiObjectKey = go.hashCode();
@@ -98,7 +98,7 @@ public abstract class AbstractGuiObject< T > implements GuiObject< T >
 
 
     @Override
-    public GuiCameraObjectManager getManager()
+    public CameraObjectManager getManager()
     {
         return manager;
     }
