@@ -3,7 +3,7 @@ package com.brentcroft.gtd.adapter.model.w3c;
 import com.brentcroft.gtd.adapter.model.DefaultGuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
 import com.brentcroft.gtd.driver.utils.DataLimit;
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.Map;
 import java.util.Optional;
@@ -15,7 +15,7 @@ import org.w3c.dom.Text;
  */
 public class W3cTextGuiObject< T extends Text > extends DefaultGuiObject< T >
 {
-    public W3cTextGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public W3cTextGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager objectManager )
     {
         super( go, parent, guiObjectConsultant, objectManager );
     }

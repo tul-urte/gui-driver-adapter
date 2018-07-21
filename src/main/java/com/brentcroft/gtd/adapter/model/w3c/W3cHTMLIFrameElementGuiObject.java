@@ -2,7 +2,7 @@ package com.brentcroft.gtd.adapter.model.w3c;
 
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import org.w3c.dom.html.HTMLIFrameElement;
  */
 public class W3cHTMLIFrameElementGuiObject< T extends HTMLIFrameElement > extends W3cHTMLElementGuiObject< T >
 {
-    public W3cHTMLIFrameElementGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public W3cHTMLIFrameElementGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager objectManager )
     {
         super( go, parent, guiObjectConsultant, objectManager );
     }

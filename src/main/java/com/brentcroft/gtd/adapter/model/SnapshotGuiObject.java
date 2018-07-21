@@ -1,6 +1,6 @@
 package com.brentcroft.gtd.adapter.model;
 
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.gtd.camera.Snapshot;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.time.LocalDateTime;
@@ -15,7 +15,7 @@ import org.w3c.dom.Element;
  */
 public class SnapshotGuiObject< T extends Snapshot > extends DefaultGuiObject< T >
 {
-    public SnapshotGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public SnapshotGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager objectManager )
     {
         super( go, parent, guiObjectConsultant, objectManager );
     }

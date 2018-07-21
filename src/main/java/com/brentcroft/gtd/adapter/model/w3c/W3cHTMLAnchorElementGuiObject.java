@@ -1,6 +1,6 @@
 package com.brentcroft.gtd.adapter.model.w3c;
 
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
 
@@ -18,7 +18,7 @@ import static com.brentcroft.util.XmlUtils.maybeSetElementAttribute;
  */
 public class W3cHTMLAnchorElementGuiObject< T extends HTMLAnchorElement > extends W3cHTMLElementGuiObject< T > implements GuiObject.Click
 {
-    public W3cHTMLAnchorElementGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public W3cHTMLAnchorElementGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager objectManager )
     {
         super( go, parent, guiObjectConsultant, objectManager );
     }

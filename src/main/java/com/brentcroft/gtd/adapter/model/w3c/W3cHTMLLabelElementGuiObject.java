@@ -4,7 +4,7 @@ import com.brentcroft.gtd.adapter.model.AttrSpec;
 import com.brentcroft.gtd.adapter.model.GuiObject;
 import com.brentcroft.gtd.adapter.model.GuiObjectConsultant;
 import com.brentcroft.gtd.driver.utils.DataLimit;
-import com.brentcroft.gtd.camera.GuiCameraObjectManager;
+import com.brentcroft.gtd.camera.CameraObjectManager;
 import com.brentcroft.util.xpath.gob.Gob;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +24,7 @@ import static java.util.Optional.ofNullable;
  */
 public class W3cHTMLLabelElementGuiObject< T extends HTMLLabelElement > extends W3cHTMLElementGuiObject< T >
 {
-    public W3cHTMLLabelElementGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, GuiCameraObjectManager objectManager )
+    public W3cHTMLLabelElementGuiObject( T go, Gob parent, GuiObjectConsultant< T > guiObjectConsultant, CameraObjectManager objectManager )
     {
         super( go, parent, guiObjectConsultant, objectManager );
     }

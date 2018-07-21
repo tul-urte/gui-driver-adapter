@@ -40,12 +40,12 @@ public class SwingUtils
             } );
 
             new Waiter8()
-                    .until( () -> completed[ 0 ] )
                     .onTimeout( millis ->
                     {
                         throw new Waiter8.TimeoutException( format( "Gave up waiting after [%s] millis.", millis ) );
                     } )
-                    .withTimeoutMillis( DEFAULT_CALL_TIMEOUT );
+                    .withTimeoutMillis( DEFAULT_CALL_TIMEOUT )
+                    .until( () -> completed[ 0 ] );
 
             if ( exception[ 0 ] != null )
             {

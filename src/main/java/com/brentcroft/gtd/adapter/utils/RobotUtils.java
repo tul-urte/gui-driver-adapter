@@ -40,7 +40,7 @@ public class RobotUtils
 
             try
             {
-                if ( ! executor.awaitTermination( 1000, TimeUnit.MILLISECONDS ) )
+                if ( !executor.awaitTermination( 1000, TimeUnit.MILLISECONDS ) )
                 {
                     List< Runnable > droppedTasks = executor.shutdownNow();
 
@@ -54,9 +54,7 @@ public class RobotUtils
         } ) );
     }
 
-
     private final static KeyEventParser keyEventParser = new KeyEventParser();
-
 
     public static final int DEFAULT_KEYS_DELAY = 20;
     public static final int DEFAULT_CLICK_DELAY = 50;
@@ -66,7 +64,6 @@ public class RobotUtils
     {
         executor.execute( job );
     }
-
 
     private static void robotInteraction( Consumer< Robot > interaction, Consumer< Exception > exceptionHandler )
     {
@@ -82,7 +79,8 @@ public class RobotUtils
         } );
     }
 
-    private static void fxRobotInteraction( Object item, Consumer< FXRobot > interaction, Consumer< Exception > exceptionHandler )
+    private static void fxRobotInteraction( Object item, Consumer< FXRobot > interaction,
+            Consumer< Exception > exceptionHandler )
     {
         run( () -> {
             try
@@ -95,7 +93,6 @@ public class RobotUtils
             }
         } );
     }
-
 
     private static void handleException( Exception originalException, Consumer< Exception > exceptionHandler )
     {
@@ -111,7 +108,8 @@ public class RobotUtils
             }
             catch ( Exception e2 )
             {
-                logger.warn( format( "Exception Handler raised exception: original exception=[%s]", originalException ), e2 );
+                logger.warn( format( "Exception Handler raised exception: original exception=[%s]", originalException ),
+                        e2 );
             }
         }
     }
@@ -131,11 +129,11 @@ public class RobotUtils
     private static Scene getScene( Object item )
     {
         Scene scene = ( item instanceof Node )
-                ? ( ( Node ) item ).getScene()
+                ? ( (Node) item ).getScene()
                 : ( item instanceof Tab )
-                        ? ( ( Tab ) item ).getContent().getScene()
+                        ? ( (Tab) item ).getContent().getScene()
                         : ( item instanceof MenuItem )
-                                ? ( ( MenuItem ) item ).getParentPopup().getScene()
+                                ? ( (MenuItem) item ).getParentPopup().getScene()
                                 : null;
 
         if ( scene == null )
@@ -145,7 +143,6 @@ public class RobotUtils
 
         return scene;
     }
-
 
     public static void fxRobotClick( Object item )
     {
@@ -161,7 +158,6 @@ public class RobotUtils
                     logger.warn( format( "Error processing click: item=[%s].", item ), e );
                 } );
     }
-
 
     public static void fxRobotDoubleClick( Object item )
     {
@@ -191,13 +187,12 @@ public class RobotUtils
                 item,
                 robot -> {
 
-                    if ( ! focusCheck.getAsBoolean() )
+                    if ( !focusCheck.getAsBoolean() )
                     {
                         throw new RuntimeException( "Failed focus check." );
                     }
 
-                    new FxKeyCodeProcessor()
-                    {
+                    new FxKeyCodeProcessor() {
                         private void handle( KeyEvent keyEvent )
                         {
                             Object result = EventUtil.fireEvent( getScene( item ), keyEvent );
@@ -219,9 +214,8 @@ public class RobotUtils
                                             isShift.get(),
                                             isCtrl.get(),
                                             isAlt.get(),
-                                            false
-                                    ) );
-                            //robot.keyPress( kc );
+                                            false ) );
+                            // robot.keyPress( kc );
                         }
 
                         @Override
@@ -238,9 +232,8 @@ public class RobotUtils
                                             isShift.get(),
                                             isCtrl.get(),
                                             isAlt.get(),
-                                            false
-                                    ) );
-                            //robot.keyRelease( kc );
+                                            false ) );
+                            // robot.keyRelease( kc );
                         }
 
                         @Override
@@ -257,13 +250,12 @@ public class RobotUtils
                                             false,
                                             false,
                                             false,
-                                            false
-                                    ) );
+                                            false ) );
                         }
                     }
                             .process( keys );
 
-                    //robot.waitForIdle();
+                    // robot.waitForIdle();
 
                     logger.debug( format( "Sent: keys=[%s], item=[%s].", keys, item ) );
                 },
@@ -271,7 +263,6 @@ public class RobotUtils
                     logger.warn( format( "Error sending keys: item=[%s], keys=[%s].", item, keys ), e );
                 } );
     }
-
 
     static abstract class FxKeyCodeProcessor
     {
@@ -294,36 +285,32 @@ public class RobotUtils
                 return;
             }
 
-            kcs.forEach( keyCodes ->
-            {
+            kcs.forEach( keyCodes -> {
 
-                final int[] lastKeyIndex = { - 1 };
+                final int[] lastKeyIndex = { -1 };
                 final String[] lastKeyCode = { null };
 
                 RuntimeException lastException = null;
 
-
                 try
                 {
                     // press the keys
-                    keyCodes.forEach( keyCode ->
-                    {
+                    keyCodes.forEach( keyCode -> {
                         switch ( keyCode )
                         {
-                            case ALT:
-                                isAlt.set( true );
-                                break;
-                            case CONTROL:
-                                isCtrl.set( true );
-                                break;
-                            case SHIFT:
-                                isShift.set( true );
-                                break;
+                        case ALT:
+                            isAlt.set( true );
+                            break;
+                        case CONTROL:
+                            isCtrl.set( true );
+                            break;
+                        case SHIFT:
+                            isShift.set( true );
+                            break;
 
-                            default:
-                                press( keyCode );
+                        default:
+                            press( keyCode );
                         }
-
 
                         lastKeyIndex[ 0 ]++;
                     } );
@@ -341,33 +328,32 @@ public class RobotUtils
 
                         switch ( keyCode )
                         {
-                            case ALT:
-                                isAlt.set( false );
-                                break;
-                            case CONTROL:
-                                isCtrl.set( false );
-                                break;
-                            case SHIFT:
-                                isShift.set( false );
-                                break;
+                        case ALT:
+                            isAlt.set( false );
+                            break;
+                        case CONTROL:
+                            isCtrl.set( false );
+                            break;
+                        case SHIFT:
+                            isShift.set( false );
+                            break;
 
-                            default:
-                                release( keyCode );
+                        default:
+                            release( keyCode );
                         }
                     }
                 }
 
                 if ( lastException != null )
                 {
-                    throw new RuntimeException( format( "Error processing keys: last-key-code=[%s]", lastKeyCode[ 0 ] ), lastException );
+                    throw new RuntimeException( format( "Error processing keys: last-key-code=[%s]", lastKeyCode[ 0 ] ),
+                            lastException );
                 }
             } );
-
 
             typed( keys );
         }
     }
-
 
     public static void awtRobotClick( int[] coords )
     {
@@ -378,7 +364,6 @@ public class RobotUtils
     {
         awtRobotDoubleClickOnPoint( DEFAULT_DOUBLE_CLICK_DELAY, coords );
     }
-
 
     public static void awtRobotClick( int delay, int[] coords )
     {
@@ -395,36 +380,42 @@ public class RobotUtils
         awtRobotKeys( DEFAULT_KEYS_DELAY, coords, focusCheck, keys );
     }
 
-
     public static void awtRobotClickOnPoint( int delay, int[] coords )
     {
         robotInteraction(
                 robot -> {
+                    //logger.warn( format( "About to move to point: [ %s, %s ].", coords[ 0 ], coords[ 1 ] ) );
+                    
                     robot.mouseMove( coords[ 0 ], coords[ 1 ] );
 
                     try
                     {
+                        //logger.warn( format( "About to press button down: [ %s, %s ].", coords[ 0 ], coords[ 1 ] ) );
+
                         robot.mousePress( InputEvent.BUTTON1_DOWN_MASK );
                         robot.delay( delay );
                     }
                     finally
                     {
+                        //logger.warn( format( "About to release button down: [ %s, %s ].", coords[ 0 ], coords[ 1 ] ) );
+                        
                         robot.mouseRelease( InputEvent.BUTTON1_DOWN_MASK );
+                        robot.delay( delay );
                     }
 
-                    logger.debug( format( "Clicked on point: [ %s, %s ].", coords[ 0 ], coords[ 1 ] ) );
+                    logger.warn( format( "Clicked on point: [ %s, %s ].", coords[ 0 ], coords[ 1 ] ) );
                 },
                 e -> {
                     logger.warn( format( "Error clicking on point: coords=[ %s, %s ].", coords[ 0 ], coords[ 1 ] ), e );
                 } );
     }
 
-
     public static void awtRobotDoubleClickOnPoint( int delay, int[] coords )
     {
         if ( coords == null || coords.length < 2 )
         {
-            throw new IllegalArgumentException( format( "Coords cannot be null or with length less than 2: %s", coords ) );
+            throw new IllegalArgumentException(
+                    format( "Coords cannot be null or with length less than 2: %s", coords ) );
         }
 
         robotInteraction(
@@ -456,16 +447,17 @@ public class RobotUtils
                     logger.debug( format( "Double-clicked on point: [ %s, %s ].", coords[ 0 ], coords[ 1 ] ) );
                 },
                 e -> {
-                    logger.warn( format( "Error double-clicking on point: coords=[%s,%s].", coords[ 0 ], coords[ 1 ] ), e );
+                    logger.warn( format( "Error double-clicking on point: coords=[%s,%s].", coords[ 0 ], coords[ 1 ] ),
+                            e );
                 } );
     }
-
 
     public static void awtRobotKeys( final int keyDelay, int[] coords, BooleanSupplier focusCheck, final String keys )
     {
         if ( coords == null || coords.length < 2 )
         {
-            throw new IllegalArgumentException( format( "Coords cannot be null or with length less than 2: %s", coords ) );
+            throw new IllegalArgumentException(
+                    format( "Coords cannot be null or with length less than 2: %s", coords ) );
         }
 
         // don't send keys to screen origin
@@ -476,12 +468,12 @@ public class RobotUtils
         {
             if ( logger.isDebugEnabled() )
             {
-                logger.debug( format( "Intercepted attempt by [%s] to send keys [%s] to screen origin.", coords, keys ) );
+                logger.debug(
+                        format( "Intercepted attempt by [%s] to send keys [%s] to screen origin.", coords, keys ) );
             }
 
             return;
         }
-
 
         List< List< Integer > > kcs = keyEventParser.parse( keys );
 
@@ -490,9 +482,7 @@ public class RobotUtils
             return;
         }
 
-
         int[][] keyCodesSequences = keyEventParser.toArray( kcs );
-
 
         robotInteraction(
                 robot -> {
@@ -509,15 +499,15 @@ public class RobotUtils
                         robot.mouseRelease( InputEvent.BUTTON1_DOWN_MASK );
                     }
 
-                    if ( ! focusCheck.getAsBoolean() )
+                    if ( !focusCheck.getAsBoolean() )
                     {
                         throw new RuntimeException( "Failed focus check." );
                     }
 
                     for ( int[] keyCodes : keyCodesSequences )
                     {
-                        int lastKeyIndex = - 1;
-                        int lastKeyCode = - 1;
+                        int lastKeyIndex = -1;
+                        int lastKeyCode = -1;
 
                         Throwable lastException = null;
 
@@ -558,7 +548,8 @@ public class RobotUtils
 
                         if ( lastException != null )
                         {
-                            throw new RuntimeException( format( "Error processing keys: last-key-code=[%s]", lastKeyCode ), lastException );
+                            throw new RuntimeException(
+                                    format( "Error processing keys: last-key-code=[%s]", lastKeyCode ), lastException );
                         }
 
                         logger.debug( format( "Sent: coords=[%s,%s], keys=[%s].", coords[ 0 ], coords[ 1 ], keys ) );
@@ -566,7 +557,9 @@ public class RobotUtils
                 },
 
                 e -> {
-                    logger.warn( format( "Error sending keys: coords=[%s,%s], keys=[%s].", coords[ 0 ], coords[ 1 ], keys ), e );
+                    logger.warn(
+                            format( "Error sending keys: coords=[%s,%s], keys=[%s].", coords[ 0 ], coords[ 1 ], keys ),
+                            e );
                 } );
     }
 }
