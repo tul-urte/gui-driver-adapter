@@ -20,6 +20,7 @@ public class HashCacheImpl< T > implements HashCache< T >
 
     private long hits = 0;
     private long throughput = 0;
+    
 
     @Override
     public int getCacheSize()
@@ -77,7 +78,9 @@ public class HashCacheImpl< T > implements HashCache< T >
 
             throughput++;
 
-            // TODO: wtf
+            // every X hits check cache size 
+            // and if bigger than Y then call gc 
+            // else log a report
             if ( ( throughput % 1000 == 0 ) )
             {
                 long cacheSize = getCacheSize();
