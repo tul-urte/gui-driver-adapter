@@ -158,10 +158,15 @@ public class CameraController extends NotificationBroadcasterSupport implements 
 
         HashCache< GuiObject > hc = camera.getObjectManager().getHashCache();
 
-        if ( cp.hasHash() && hc.isEnabled() && hc.hasCachedObject( cp.getHash() ) )
+        if ( cp.hasHash() && hc.isEnabled() )
         {
             // lookup in hash cache
-            return hc.getCachedObject( cp.getHash() );
+            GuiObject go =  hc.getCachedObject( cp.getHash() );
+            
+            if (go != null)
+            {
+                return go;
+            }
         }
 
         return camera.getGuiObject(
